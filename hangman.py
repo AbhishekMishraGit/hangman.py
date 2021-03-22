@@ -108,7 +108,6 @@ while True:
     
     print()
     secretword = random_language_selection()
-    #print('secretword is', secretword)
     print(' Guess this Word')
     first_letter_of_secretword = secretword[0]
     blank_board = ' ' + first_letter_of_secretword + '  _ '*(len(secretword)-1)
@@ -151,8 +150,7 @@ while True:
             for i in range(0,len(secretword)):
                 if secretword[i] == guess:
                     index_value.append(i)
-                        
-            #print('index value of user input in secretword:',index_value)
+                       
 
             
             for i in range(0,len(secretword)):
