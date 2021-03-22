@@ -62,7 +62,7 @@ HANGMANPICS = ['''
         |
   =========''']
 
-#print(programming_language)
+
 print("WELCOME TO HANGMAN.PY")
 print(' You have to guess the correct word. it can be a very common input device name like "mouse".\n or a famous programming language\n or, common programming term like "programming" itself\n or, any kind of datastructure or, a name from FAANG\n or, a well known E-Learning platform.\n but, if you guess any incorrect word I will start hanging "HANGMAN" in step by step manner.')
 time.sleep(9)
@@ -139,13 +139,9 @@ while True:
 
         #takes user input
         guess = user_input()
-        #print('user guess',guess)
-        #print()
-
 
         #check if player guess is correct, and prints the board as well as user guess.
         if guess in secretword:
-
             alreadyguessed = alreadyguessed + guess
             for i in range(0,len(secretword)):
                 if secretword[i] == guess:
