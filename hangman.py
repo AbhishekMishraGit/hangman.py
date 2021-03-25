@@ -62,8 +62,9 @@ HANGMANPICS = ['''
         |
   =========''']
 
-
+#print(programming_language)
 print("WELCOME TO HANGMAN.PY")
+time.sleep(2)
 print(' You have to guess the correct word. it can be a very common input device name like "mouse".\n or a famous programming language\n or, common programming term like "programming" itself\n or, any kind of datastructure or, a name from FAANG\n or, a well known E-Learning platform.\n but, if you guess any incorrect word I will start hanging "HANGMAN" in step by step manner.')
 time.sleep(9)
 print()
@@ -95,33 +96,59 @@ def user_input():
             if len(x) != 1:
                 time.sleep(1)
                 print(' You can only guess one letter at a time.')
+            elif x in [secretword[first_randword], secretword[second_randword]]:
+                print('word already shown as HINT')
             elif x in alreadyguessed:
                 time.sleep(1)
                 print(' You have already guessed this letter')
-            elif x not in 'abcdefghijklmnopqrstuvwxyz':
+            elif x not in 'abcdefghijklmnopqrstuvwxyz+':
                 time.sleep(1)
                 print(' please enter a letter.')
             else:
                 return x
 
 while True:
-    
+
+
+    alreadyguessed = ' '
+    missedletters = ' '
+    index_value1 = []
+    index_value2 = []
+
     print()
     secretword = random_language_selection()
     print(' Guess this Word')
-    first_letter_of_secretword = secretword[0]
-    blank_board = ' ' + first_letter_of_secretword + '  _ '*(len(secretword)-1)
-    print(blank_board)   
+
+    first_randword = random.randint(0,len(secretword)-1)
+    second_randword = random.randint(0,len(secretword)-1)
+    secretword[first_randword]
+    secretword[second_randword]
+    
+
+    while first_randword == second_randword:
+        second_randword = random.randint(0,len(secretword)-1)
+
+    index_value1 = [first_randword, second_randword]
+    index_value2 = [first_randword, second_randword]
+    print('Word Hints',secretword[first_randword], secretword[second_randword])
+
+    for i in range(0,len(secretword)):
+        print(' ', end=' ')
+        if i in index_value1:
+            print(secretword[i], end=' ')
+        else:
+            print('_', end=' ')
+    
+#    first_letter_of_secretword = secretword[0]
+#    blank_board = ' ' + first_letter_of_secretword + '  _ '*(len(secretword)-1)
+#    print(blank_board)   
 
     
-    alreadyguessed = ' '
-    missedletters = ' '
-    index_value = []
 
     while True:
         
         #break the loop if player guess all words correctly. 
-        if len(index_value) == len(secretword):
+        if len(index_value2) == len(secretword):
             time.sleep(1)
             print('\n\n ')
             for i in [' checking your answer', '.', '.', '.']:
@@ -136,31 +163,27 @@ while True:
             time.sleep(2)
             break
 
-
-        #takes user input
         guess = user_input()
+
 
         #check if player guess is correct, and prints the board as well as user guess.
         if guess in secretword:
+
             alreadyguessed = alreadyguessed + guess
             for i in range(0,len(secretword)):
                 if secretword[i] == guess:
-                    index_value.append(i)
-                       
+                    index_value2.append(i)
+                        
+            #print('index value of user input in secretword:',index_value)
 
             
             for i in range(0,len(secretword)):
                 print(' ', end=' ')
-                if i in index_value:
+                if i in index_value2:
                     print(secretword[i], end=' ')
                 else:
                     print('_', end=' ')
     
-
-
-#if player guess is incorrect, then else block will prints a particular hangman ASCII art
-#form HANGMANPICS according to the length of string in missed words. and at the same time nested if block will checks if
-#has reached to last ASCII art beacuse last ASCII art is considered as end of the game.
 
         else:
             alreadyguessed = alreadyguessed + guess
@@ -177,6 +200,9 @@ while True:
                 time.sleep(1)
                 print(' Correct letter was:', secretword)
                 time.sleep(1)
+                if missedletters == ' ':
+                    print('Missedguesses: 0')
+                
                 print(' Missedguesses:', missedletters)
                 break
 
