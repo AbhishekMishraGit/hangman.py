@@ -64,9 +64,9 @@ HANGMANPICS = ['''
 
 #print(programming_language)
 print("WELCOME TO HANGMAN.PY")
-time.sleep(0)
+time.sleep(2)
 print(' You have to guess the correct word. it can be a very common input device name like "mouse".\n or a famous programming language\n or, common programming term like "programming" itself\n or, any kind of datastructure or, a name from FAANG\n or, a well known E-Learning platform.\n but, if you guess any incorrect word I will start hanging "HANGMAN" in step by step manner.')
-time.sleep(0)
+time.sleep(9)
 print()
 print('Let us start')
 print()
@@ -96,8 +96,6 @@ def user_input():
             if len(x) != 1:
                 time.sleep(1)
                 print(' You can only guess one letter at a time.')
-           # elif x in [secretword[frnd_index], secretword[srnd_index]]:
-           #     print('word already shown as HINT')
             elif x in alreadyguessed:
                 time.sleep(1)
                 print(' You have already guessed this letter')
@@ -131,10 +129,12 @@ while True:
                 print(' ', end=' ')
                 print('_', end=' ')
     
+    #Game Play
     while True:
         
-        #break the loop if player guess all words correctly. 
+        #break the loop if player guess all words correctly.   
         if len(index_value2) == len(secretword):
+            
             time.sleep(1)
             print('\n\n ')
             for i in [' checking your answer', '.', '.', '.']:
@@ -159,10 +159,7 @@ while True:
             for i in range(0,len(secretword)):
                 if secretword[i] == guess:
                     index_value2.append(i)
-                        
-            #print('index value of user input in secretword:',index_value)
-
-            
+  
             for i in range(0,len(secretword)):
                 print(' ', end=' ')
                 if i in index_value2:
@@ -193,8 +190,7 @@ while True:
 
 
 
-#if playagain is "no" then loop will break.
-    
+#if playagain is "no" then loop will break.    
     if not play_again():
         break
 
